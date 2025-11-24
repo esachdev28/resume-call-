@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Mate - Build Your Professional Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">Resume Mate</span>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+                <button class="download-btn" id="downloadBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel - Form -->
+        <div class="form-panel">
+            <div class="form-header">
+                <h1>Create Your Resume</h1>
+                <p>Build a professional resume in minutes</p>
+            </div>
+
+            <div class="form-sections">
+                <!-- Personal Information Section -->
+                <section class="form-section active" data-section="personal">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>Personal Information</h2>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" class="form-input" id="fullName" onInput="updatePreview()">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="john@example.com" class="form-input" id="email" onInput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" placeholder="+1 (555) 123-4567" class="form-input" id="phone" onInput="updatePreview()">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" placeholder="New York, USA" class="form-input" id="location" onInput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>Professional Title</label>
+                                <input type="text" placeholder="Software Engineer" class="form-input" id="title" onInput="updatePreview()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Professional Summary</label>
+                            <textarea placeholder="Brief overview of your professional background..." class="form-input" id="summary" rows="4" onInput="updatePreview()"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education Section -->
+                <section class="form-section" data-section="education">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>Education</h2>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div id="educationList"></div>
+                        <button class="add-btn" onclick="addEducation()">
+                            <span>+</span> Add Education
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Experience Section -->
+                <section class="form-section" data-section="experience">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>Work Experience</h2>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div id="experienceList"></div>
+                        <button class="add-btn" onclick="addExperience()">
+                            <span>+</span> Add Experience
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="form-section" data-section="skills">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>Skills</h2>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="skill-input-group">
+                            <input type="text" placeholder="e.g., JavaScript, React, UI Design" class="form-input" id="skillInput" onKeyPress="handleSkillKeyPress(event)">
+                            <button class="skill-add-btn" onclick="addSkill()">Add</button>
+                        </div>
+                        <div class="skills-container" id="skillsList"></div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="form-section" data-section="projects">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>Projects</h2>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div id="projectsList"></div>
+                        <button class="add-btn" onclick="addProject()">
+                            <span>+</span> Add Project
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Right Panel - Preview -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <h3>Live Preview</h3>
+                <button class="preview-reset" onclick="resetResume()" title="Reset all data">Reset</button>
+            </div>
+            <div class="preview-container" id="resumePreview">
+                <div class="resume">
+                    <div class="resume-header">
+                        <div class="resume-name" id="previewName">Your Name</div>
+                        <div class="resume-title" id="previewTitle">Professional Title</div>
+                        <div class="resume-contact" id="previewContact">
+                            <span id="previewEmail"></span>
+                            <span id="previewPhone"></span>
+                            <span id="previewLocation"></span>
+                        </div>
+                    </div>
+
+                    <div id="previewSummary" class="resume-section" style="display:none;">
+                        <div class="resume-section-title">About</div>
+                        <div class="resume-summary"></div>
+                    </div>
+
+                    <div id="previewExperienceSection" class="resume-section" style="display:none;">
+                        <div class="resume-section-title">Experience</div>
+                        <div id="previewExperience"></div>
+                    </div>
+
+                    <div id="previewEducationSection" class="resume-section" style="display:none;">
+                        <div class="resume-section-title">Education</div>
+                        <div id="previewEducation"></div>
+                    </div>
+
+                    <div id="previewSkillsSection" class="resume-section" style="display:none;">
+                        <div class="resume-section-title">Skills</div>
+                        <div id="previewSkills" class="resume-skills"></div>
+                    </div>
+
+                    <div id="previewProjectsSection" class="resume-section" style="display:none;">
+                        <div class="resume-section-title">Projects</div>
+                        <div id="previewProjects"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
