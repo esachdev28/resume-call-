@@ -63,7 +63,7 @@ body {
 }
 
 [data-theme="dark"] .navbar {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.9);
 }
 
 .nav-container {
@@ -132,7 +132,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   transition: var(--transition);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .download-btn:hover {
@@ -181,7 +181,7 @@ body {
 
 .form-header p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.96rem;
 }
 
 .form-section {
@@ -196,7 +196,7 @@ body {
 
 .form-section:hover {
   border-color: var(--primary-light);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 5px 12px rgba(37, 99, 235, 0.08);
 }
 
 .section-header {
@@ -460,7 +460,7 @@ body {
 }
 
 .resume-name {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
